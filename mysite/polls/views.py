@@ -25,8 +25,14 @@ class DetailView(generic.DeleteView):
     model = Question
     template_name = 'polls/detail.html'
 
+    def get_queryset(self):
+        """
+        index 페이지에 게시되지 않은 질문들은 제외합니다
+        """
+        return Question.objects.filter(pub_date__lte=timezone.now())
 
-class ResultsView(generic.DetailView):
+
+class ResultsView(genesric.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
