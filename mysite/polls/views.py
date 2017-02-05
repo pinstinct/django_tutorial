@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import generic
+from django.utils import timezone
 
 from .models import Choice, Question
 
@@ -11,8 +12,13 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
-        """최근 5개의 질문 반환"""
-        return Question.objects.order_by('-pub_date')[:5]
+        """
+        최근 5개의 질문 반환합니다.
+        (미래의 게시될 질문은 포함하지 않음)
+        """
+        return Question.objects.filter(
+            pub_date__lte=timezone.now()
+        ).order_by('-pub_date')[:5]
 
 
 class DetailView(generic.DeleteView):
