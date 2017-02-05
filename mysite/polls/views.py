@@ -32,7 +32,7 @@ class DetailView(generic.DeleteView):
         return Question.objects.filter(pub_date__lte=timezone.now())
 
 
-class ResultsView(genesric.DetailView):
+class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
 
