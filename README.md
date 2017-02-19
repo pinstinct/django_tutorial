@@ -5,8 +5,8 @@
 튜토리얼 정리 문서는 https://github.com/pinstinct/homework/tree/master/django-tutorial 에서 확인할 수 있습니다.
 
 ## Requirements
-Python (3.4.3)
-Django (1.10.5)
+- Python (3.4.3)
+- Django (1.10.5)
 
 ## Installation
 ```shell
